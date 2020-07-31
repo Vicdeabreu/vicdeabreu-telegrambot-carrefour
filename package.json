@@ -1,0 +1,23 @@
+{
+  "name": "vicdeabreu-telegram-carrefour",
+  "version": "1.0.0",
+  "description": "Carrefour bot from Vicdeabreu",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "node",
+    "telegram"
+  ],
+  "author": "Victor De Abreu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "nedb": "^1.8.0",
+    "telegraf": "^3.38.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
