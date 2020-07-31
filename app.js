@@ -50,7 +50,7 @@ bot.command('samsungtv', (ctx) => {
 
 bot.action('STV43', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendPhoto(ctx.chat.id, {source: "res/samsung-smart43.jpg"})
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h23/h5d/h00/h00/26900204224542.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, `Você escolheou o Samsung Smart TV LED 43"😍. Agora você tem 3 opções:\n 
 ✅Características: para ver os detalhes da TV 
 ✅Comprar
@@ -94,7 +94,7 @@ Você quer mais detalhes para a compra ou voltar para o menú principal. Qual pr
 
 bot.action('STV55', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendPhoto(ctx.chat.id, {source: "res/samsung-smart55.jpg"})
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h40/h20/h00/h00/13615290908702.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, `Você escolheu o Smart TV LED 55" 😍. Agora você tem 3 opções:\n 
 ✅Características: para ver detalhes da TV 
 ✅Comprar
@@ -128,7 +128,7 @@ Você pode ver mais detalhes para a compra ou voltar para o menú principal. Qua
   {
     reply_markup: {
       inline_keyboard: [
-        [ {text: "Comprar", url: "https://www.carrefour.com.br/Smart-TV-LED-43-Samsung-T5300-FULL-HD-WIFI-HDR-para-Brilho-e-Contraste-Plataforma-Tizen-2-HDMI-1-USB/p/6005152?origin=autocomplete&p=samsung%20smartv&ranking=2&typeclick=3&ac_pos=header"},
+        [ {text: "Comprar", url: "https://www.carrefour.com.br/Smart-TV-LED-55-Samsung-RU7100-Ultra-HD-4K-Bluetooth-Wifi-HDR-Premium-Itunes-Controle-Unico-3-HDMI-2-USB/p/5675880"},
           {text: "Voltar", callback_data: "go-back"}
         ],
         [{text: "Menú principal", callback_data: "go-main"}]
@@ -172,7 +172,7 @@ bot.command('lgtv', (ctx) => {
     reply_markup: {
       inline_keyboard: [
         [{text: "32 polegadas", callback_data: "LGSTV32"},
-          {text: "60 polegadas", callback_data: "LGSTV60"}
+          {text: "60 polegadas", callback_data: "LGSTV60"},
         ],
         [{text: "Menú principal", callback_data: "go-main"}]
       ]
@@ -184,7 +184,7 @@ bot.command('lgtv', (ctx) => {
 
 bot.action('LGSTV32', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendPhoto(ctx.chat.id, {source: "res/lg-smart32.jpg"} )
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h6a/ha6/h00/h00/14046427512862.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, `Você escolheou o LG Smart TV LED 32"😍. Agora você tem 3 opções:\n 
 ✅Características: para ver detalhes da TV 
 ✅Comprar
@@ -231,7 +231,7 @@ Você quer mais detalhes da compra ou voltar para o menú principal? 👀`,
 
 bot.action('LGSTV60', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendPhoto(ctx.chat.id, {source: "res/lg-smart60.jpg"})
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h58/hd5/h00/h00/28087718182942.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, `Você escolheou o LG Smart TV LED 60"😍. Agora você tem 3 opções:\n 
 ✅Características: para ver detalhes da TV 
 ✅Comprar
