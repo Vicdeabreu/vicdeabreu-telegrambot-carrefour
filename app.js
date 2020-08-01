@@ -26,7 +26,7 @@ Em caso de precisar de ajuda, digite /help`,
 })
 
 bot.help((ctx) => {
-  ctx.reply(`Enquanto fazemos crescer esse maravilhoso bot, deixamos as nossas principais opções 😊\n 
+  ctx.telegram.sendMessage(ctx.chat.id, `Enquanto fazemos crescer esse maravilhoso bot, deixamos as nossas principais opções 😊\n 
 ✔️Aperte em 'TV' para ver as nossas opções de TV 📺 
 ✔️Aperte em 'celular' para ver as opções de celulares que ofercemos 📱 \n
 ✔️Aperte em 'Español' para ver o menú em español
@@ -47,7 +47,19 @@ While we try to grow up this amazing bot, we are leaving you our main options �
 ✔️Press on 'Cellphones' to see the cellphones options we offer 📱 \n
 ✔️Press on 'Portugués' to see the menú in portuguese
 ✔️Press on 'Español' to see the menú in spanish
-To get back to the main menú, type /start on the command line`)
+To get back to the main menú, type /start on the command line`, 
+    {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "TV", callback_data: "tv-br"},
+          {text: "Celular", callback_data: "cel-br"}
+        ],
+        [ {text: "Español", callback_data: "esp-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ]
+      ]
+    }
+  })
 })
 
 
