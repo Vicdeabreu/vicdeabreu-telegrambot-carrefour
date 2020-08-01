@@ -671,7 +671,7 @@ Cuál TV prefieres?👀
 // ----------------------- TV EN ESPAÑOL ---------------------------//
 
 // ESPAÑOL SMART TV SAMSUNG
-bot.command('samsungtv-es', (ctx) => {
+bot.action('samsungtv-esp', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://i.pinimg.com/originals/5f/d0/30/5fd030534fd74380e0680ebeb79a213a.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Tenemos disponibles 2 modelos de Smart TV Samsung, ¿Cuál prefieres? 😊', 
   {
@@ -680,7 +680,7 @@ bot.command('samsungtv-es', (ctx) => {
         [{text: "43 pulgadas", callback_data: "STV43-esp"},
           {text: "55 pulgadas", callback_data: "STV55-esp"}
         ],
-        [{text: "Volver a TV", callback_data: "back-tvs-esp"}],
+        [{text: "Back a TV", callback_data: "back-tvs-esp"}],
         [{text: "Menú principal", callback_data: "go-main-esp"}]
       ]
     }
@@ -780,7 +780,7 @@ Puedes ver mais detalhes para la compra o volver al menú principal. ¿Qué pref
 
 // ------------------------ ESPAÑOL SMART TV LG ------------------------------------ //
 
-bot.command('lgtv-esp', (ctx) => {
+bot.action('lgtv-esp', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://technolized.files.wordpress.com/2012/09/lg-smart-tv-logo.jpg?w=848')
   ctx.telegram.sendMessage(ctx.chat.id, 'Tenemos disponibles 2 modelos de Smart TV LG, ¿Cuál prefieres? 😊', 
   {
@@ -900,6 +900,7 @@ bot.action('back-lgtv-esp', (ctx) => {
         [{text: "32 pulgadas", callback_data: "LGSTV32-esp"},
           {text: "60 pulgadas", callback_data: "LGSTV60-esp"}
         ],
+        [{text: "Volver para TV's", callback_data: "back-tvs-esp"}],
         [{text: "Menú principal", callback_data: "go-main-esp"}]
       ]
     }
@@ -1258,7 +1259,7 @@ bot.action('back-cellphones-esp', (ctx) => {
 bot.action('eng-menu', (ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `😄 Hi! Wellcome to Carrefour in english 🔵⚪️🔴\n 
 🇧🇷 Para portugués, aperte o botão abaixo
-🇬🇧 Para español, presione el botón 'español' debajo\n 
+🇪🇸 Para español, presione el botón 'español' debajo\n 
 Otherwise, please select the electronics you wish to buy: \n 
 1️⃣: TV 📺
 2️⃣: Cellphones 📱 \n
@@ -1266,9 +1267,618 @@ For help, please type /help 👀`,
   {
     reply_markup: {
       inline_keyboard: [
+        [{text: "TV", callback_data: "tv-eng"},
+          {text: "Cellphones", callback_data: "cel-eng"}
+        ],
         [ {text: "Portugués", callback_data: "br-menu"},
           {text: "Español", callback_data: "esp-menu"}
         ]
+      ]
+    }
+  })
+})
+
+// ---------------- ENGLISH TV ----------------------------
+
+bot.action('tv-eng', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 There's nothing better for staying at home than buying a new TV, right? ☺️
+Which one do you prefer the most?👀 
+1️⃣ Samsung 
+2️⃣ LG: `, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Samsung", callback_data: "samsungtv-eng"},
+          {text: "LG", callback_data: "lgtv-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"},]
+      ]
+    }
+  })
+})
+
+// ----------------------- TV english ---------------------------//
+
+// ENGLISH SMART TV SAMSUNG
+bot.action('samsungtv-eng', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://i.pinimg.com/originals/5f/d0/30/5fd030534fd74380e0680ebeb79a213a.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Samsung Smart TV models avaiable, Which one do you prefer the most? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "43 inches", callback_data: "STV43-eng"},
+          {text: "55 inches", callback_data: "STV55-eng"}
+        ],
+        [{text: "Back to TV", callback_data: "back-tvs-eng"}],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('STV43-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h23/h5d/h00/h00/26900204224542.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You selected the Samsung Smart TV LED 43"😍. Now, you have 3 options:\n 
+✅Features: to see the TV details
+✅Buy
+✅Back to Main Menu 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "stv43-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-43-Samsung-T5300-FULL-HD-WIFI-HDR-para-Brilho-e-Contraste-Plataforma-Tizen-2-HDMI-1-USB/p/6005152?origin=autocomplete&p=samsung%20smartv&ranking=2&typeclick=3&ac_pos=header"},
+          {text: "Back", callback_data: "go-back-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('stv43-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The Samsung Smart TV LED 43" has these features:\n 
+✅Display: Ultra HD 4K Bluetooth
+✅Resolution: HDR 1,920px x 1,080px
+✅Height: 57.19cm
+✅Width: 97.99cm
+✅Depth: 7.07cm
+✅USB and HDMI plugs
+✅Wifi \n
+
+You can see more details for buying or get back to Main Menu. Which option you choise? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-43-Samsung-T5300-FULL-HD-WIFI-HDR-para-Brilho-e-Contraste-Plataforma-Tizen-2-HDMI-1-USB/p/6005152?origin=autocomplete&p=samsung%20smartv&ranking=2&typeclick=3&ac_pos=header"},
+          {text: "Back", callback_data: "go-back-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+// ----------------------------- SMART TV 55 english ----------------------- //
+
+bot.action('STV55-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h40/h20/h00/h00/13615290908702.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You choosed Smart TV LED 55" 😍. Now, you have 3 options:\n 
+✅Features: To see TV details
+✅Buy
+✅Back to Main Menu 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "stv55-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-55-Samsung-RU7100-Ultra-HD-4K-Bluetooth-Wifi-HDR-Premium-Itunes-Controle-Unico-3-HDMI-2-USB/p/5675880"},
+          {text: "Back", callback_data: "go-back-eng"}
+        ],
+      ]
+    }
+  })
+})
+
+bot.action('stv55-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The Samsung Smart TV LED 55" has these features:\n 
+✅Display: Ultra HD 4K Bluetooth
+✅Resolution: HDR Premium 1,920px x 1,080px
+✅Apps installed: Youtube, Netflix, Google Play, Globo Play, Amazon Prime Video
+✅Height: 71.42cm
+✅Width: 1.24m
+✅Depth: 5,87 cm
+✅Weight: 17.2kg
+✅Plugs: 2USB and HDMI
+✅Wifi \n
+
+You can see more details for buying or get back to Main Menu. Which one do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-55-Samsung-RU7100-Ultra-HD-4K-Bluetooth-Wifi-HDR-Premium-Itunes-Controle-Unico-3-HDMI-2-USB/p/5675880"},
+          {text: "Back", callback_data: "go-back-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+// ------------------------ english SMART TV LG ------------------------------------ //
+
+bot.action('lgtv-eng', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://technolized.files.wordpress.com/2012/09/lg-smart-tv-logo.jpg?w=848')
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 LG Smart TV models avaiable. Which one do you prefer the most? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "32 inches", callback_data: "LGSTV32-eng"},
+          {text: "60 inches", callback_data: "LGSTV60-eng"},
+        ],
+        [{text: "Back to TV's", callback_data: "back-tvs-eng"}],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+// ------------------------------- LG DE 32 inches -------------------------- //
+
+bot.action('LGSTV32-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h6a/ha6/h00/h00/14046427512862.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You choosed LG Smart TV LED 32"😍. Now you have 3 options:\n 
+✅Features: To see TV details
+✅Buy
+✅Back to Main Menu 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "lgtv32-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-32-LG-32LM625BPSB-HDR-Ativo-Virtual-Surround-Sound-Wi-Fi-Inteligencia-Artificial-ThinQ-AI/p/5733227"},
+          {text: "Back", callback_data: "back-lgtv-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('lgtv32-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The LG Smart TV LED 32" has these features:\n 
+✅Display: HD 720px
+✅Height: 44.5cm
+✅Width: 74.2cm
+✅Depth: 8.75cm
+✅Weight: 5.1kg
+✅Artificial Intelligence
+✅USB and HDMI plugs
+✅Wifi \n
+
+You can see more buying details or get back to Main Menu. Which one do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-32-LG-32LM625BPSB-HDR-Ativo-Virtual-Surround-Sound-Wi-Fi-Inteligencia-Artificial-ThinQ-AI/p/5733227"},
+          {text: "Back", callback_data: "back-lgtv-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+// -------------------------------english LG DE 60 inches --------------------------------
+
+bot.action('LGSTV60-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h58/hd5/h00/h00/28087718182942.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You choosed LG Smart TV LED 60"😍. Now you have 3 options:\n 
+✅Features: To see TV details
+✅Buy
+✅Back to Main Menu 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "lgtv60-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-60-LG-UN7310PSC-UHD-4K-Wi-Fi-Bluetooth-HDR-Thinq-AI-Smart-Magic-Google-Assistente-Alexa/p/6124291"},
+          {text: "Back", callback_data: "back-lgtv-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('lgtv60-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The LG Smart TV LED 60" has these features:\n 
+✅Display: UHD 4K 3840px x 2160px
+✅Height: 72.6cm
+✅Width: 1.244m
+✅Depth: 8.7cm
+✅Weight: 14.3kg
+✅USB and HDMI plugs
+✅Wifi \n
+
+You can see more buying details or get back to Main Menu. What do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/Smart-TV-LED-60-LG-UN7310PSC-UHD-4K-Wi-Fi-Bluetooth-HDR-Thinq-AI-Smart-Magic-Google-Assistente-Alexa/p/6124291"},
+          {text: "Back", callback_data: "back-lgtv-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+// --------------------------------------- english Main Menu LG TV -----------------------
+
+bot.action('back-lgtv-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Smart TV LG options avaiable. Which one do you prefer the most? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "32 inches", callback_data: "LGSTV32-eng"},
+          {text: "60 inches", callback_data: "LGSTV60-eng"}
+        ],
+        [{text: "Back to TV's", callback_data: "back-tvs-eng"}],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+// -------------------------  Funciones de Back en english  ------------------------------
+
+bot.action('go-back-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `We have 2 Samsung Smart TV options avaiable. Which one do you prefer the most? 😊`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "43 inches", callback_data: "STV43-eng"},
+          {text: "55 inches", callback_data: "STV55-eng"}
+        ],
+        [{text: "Back to TV's", callback_data: "back-tvs-eng"},
+        {text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('go-main-eng', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Hi! Wellcome to Carrefour in english 🔵⚪️🔴\n 
+🇧🇷 Para portugués, aperte o botão abaixo
+🇪🇸 Para español, presione el botón 'español' debajo\n 
+Otherwise, please select the electronics you wish to buy: \n 
+1️⃣: TV 📺
+2️⃣: Cellphones 📱 \n
+For help, please type /help 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "TV", callback_data: "tv-eng"},
+          {text: "Celular", callback_data: "cel-eng"}
+        ],
+        [ {text: "Portugués", callback_data: "br-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ]
+      ]
+    }
+  })
+})
+
+bot.action('back-tvs-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 There's nothing better for staying at home than buying a new TV, right? ☺️
+Which one do you prefer the most?👀 
+1️⃣ Samsung 
+2️⃣ LG: `, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Samsung", callback_data: "samsungtv-eng"},
+          {text: "LG", callback_data: "lgtv-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"},]
+      ]
+    }
+  })
+})
+
+
+// --------------------- CELLPHONES IN English  ---------------  // 
+bot.action('cel-eng', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Finally you decided to look at new cellphones, right? 😏. Which cellphone do you like the most?
+
+1️⃣ Samsung: 
+2️⃣ iPhone: `, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Samsung", callback_data: "samsungphones-eng"},
+          {text: "iPhone", callback_data: "iphones-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"},]
+      ]
+    }
+  })
+})
+
+// -------------------   CELULARES SAMSUNG  ------------------ //
+bot.command('samsungphones-eng', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Samsung cellphone models avaiable. Which one do you prefer the most? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Galaxy S10", callback_data: "GLXS10-eng"},
+          {text: "Galaxy A71", callback_data: "GLXA71-eng"}
+        ],
+        [{text: "Back to cellphones", callback_data: "back-cellphones-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('GLXS10-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h6c/h35/h00/h00/13689345343518.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You choosed Samsung Galaxy S10😍 the best Samsung device 😎. Now you have 3 options:\n 
+✅Features: to see phone details
+✅Buy
+✅Back to Main Menu 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "glxs10-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-S10-128GB-8GB-Octa-2-7GHz-1-9GHz-Android-9-0-PowerShare-6-1-12MP-12MP-16MP-10MP-Azul/p/MP15888516"},
+          {text: "Back", callback_data: "back-cell-samsung-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('glxs10-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The Samsung Galaxy S10 has these features:\n 
+✅Display: 6.1 inches
+✅Resolution: UHD 8K (7680px x 4320px)
+✅Storage: 128GB
+✅RAM memory: 8GB
+✅Processor: Exynos Octa Core 2.7GHz + 1.9GHz
+✅Android:9
+✅Camera:Triple (12MP,12MP,16MP. Front: 10MP)
+✅Colors:Blue, White & Black
+✅Batery: 3400mAh
+✅Bluetooth
+
+You can see more buying details or get back to Main Menu. What do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-S10-128GB-8GB-Octa-2-7GHz-1-9GHz-Android-9-0-PowerShare-6-1-12MP-12MP-16MP-10MP-Azul/p/MP15888516"},
+          {text: "Back", callback_data: "back-cell-samsung-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('GLXA71-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h8f/h26/h00/h00/17100837552158.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You selected Samsung Galaxy A71😍 excelent choose 😎. Now you have three options:\n 
+✅Features: to see phone details
+✅Buy
+✅Back tol Main Menu 👀`,
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "glxa71-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-A71-128GB-Prata-4G-Tela-6-7-Pol-Camera-Quadrupla-64MP-Selfie-32MP-Android-10-0/p/5916330"},
+          {text: "Back", callback_data: "back-cell-samsung-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('glxa71-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The Samsung Galaxy A71 has these features:\n 
+✅Display: 6.7 inches
+✅Resolution: UHD 4K (1080px x 2400px)
+✅Storage: 128GB (Extensive to 512GB)
+✅RAM memory: 6GB
+✅Processor: Exynos Octa Core 2.2GHz
+✅Android:10
+✅Camera: 4 cameras (64MP,12MP,5MP,5MP) Front: 32MP
+✅Colors:Silver, Black
+✅Batery: 4500mAh
+✅Bluetooth
+✅Warranty: 12 meses
+
+You can see more buying details or get back to Main Menu. What do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-A71-128GB-Prata-4G-Tela-6-7-Pol-Camera-Quadrupla-64MP-Selfie-32MP-Android-10-0/p/5916330"},
+          {text: "Back", callback_data: "back-cell-samsung-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('back-cell-samsung-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have Samsung 2 models avaiable. Which one do you prefer? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Galaxy S10", callback_data: "GLXS10-eng"},
+          {text: "Galaxy A71", callback_data: "GLXA71-eng"}
+        ],
+        [{text: "Back to cellphones", callback_data: "back-cellphones-eng"}]
+      ]
+    }
+  })
+})
+
+// ---------------------- english CELULARES IPHONE ------------------------- //
+
+bot.command('iphones-eng', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://m.economictimes.com/thumb/msid-73717611,width-1200,height-900,resizemode-4,imgsize-428397/apple-postpones-launch-of-online-store-in-india.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'Now, we have 2 iPhone models avaiable. Which one do you prefer the most? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "iPhone 11 Pro Max", callback_data: "iphone11-eng"},
+          {text: "iPhone XS Max", callback_data: "iphoneXS-eng"}
+        ],
+        [{text: "Back to cellphones", callback_data: "back-cellphones-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('iphone11-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h72/h9d/h00/h00/15110452215838.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You selected the iPhone 11 Pro Max😍 the best from Apple 😎. Now, you have 3 options:\n 
+✅Features: to see more phone details
+✅Buy
+✅Back tol Main Menu 👀`,
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "iphone11-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/iPhone-11-Pro-Max-64GB-Verde-meia-noite/p/MP19828791"},
+          {text: "Back", callback_data: "back-iphones-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('iphone11-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The iPhone11 has these features:\n 
+✅Display: 6.5 inches
+✅Resolution: HDR OLED (2688px x 1242px)
+✅Storage: 64GB
+✅RAM memory: 4GB
+✅Processor: Apple 4 Core
+✅Camera:Triple (12MP,12MP,12MP,12MP) Front: 12MP
+✅Colors: Midnight Green, Silver, Black, Gold
+✅Batery: 3969mAh
+✅Bluetooth
+✅Apple Pay
+✅Warranty: 12 months
+
+You can see more buying details or get back to Main Menu. What do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/iPhone-11-Pro-Max-64GB-Verde-meia-noite/p/MP19828791"},
+          {text: "Back", callback_data: "back-iphones-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('iphoneXS-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/hf2/h40/h00/h00/28463228813342.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `You selected the iPhone XS Max😍 Excelent choose 😎. Now you have 3 options:\n 
+✅Features: to see more phone details
+✅Buy
+✅Back tol Main Menu 👀`,
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Features", callback_data: "iphoneXS-set-eng"},
+          {text: "Buy", url: "https://www.carrefour.com.br/USADO-iPhone-XS-Max-Cinza-Espacial-64GB/p/MP27254825"},
+          {text: "Back", callback_data: "back-iphones-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('iphoneXS-set-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `The iPhone XS Max has these features:\n 
+✅Display: 6.5 inches
+✅Resolution: HDR OLED (2688px x 1242px)
+✅Storage: 64GB/256GB/512GB
+✅RAM memory: 4GB
+✅Processor: Apple 4 Core
+✅Camera:Double (12MP,12MP) Front: 7MP
+✅Colors: Gray, Silver, Gold
+✅Batery: 3969mAh
+✅Bluetooth
+✅Apple Pay
+✅Warranty: 12 months
+
+You can see more buying details or get back to Main Menu. What do you prefer? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Buy", url: "https://www.carrefour.com.br/USADO-iPhone-XS-Max-Cinza-Espacial-64GB/p/MP27254825"},
+          {text: "Back", callback_data: "back-iphones-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('back-iphones-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://m.economictimes.com/thumb/msid-73717611,width-1200,height-900,resizemode-4,imgsize-428397/apple-postpones-launch-of-online-store-in-india.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 iPhone models. Which one do you prefer the most? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "iPhone 11 Pro Max", callback_data: "iphone11-eng"},
+          {text: "iPhone XS Max", callback_data: "iphoneXS-eng"}
+        ],
+        [{text: "Back to cellphones", callback_data: "back-cellphones-eng"}]
+      ]
+    }
+  })
+})
+
+bot.action('back-cellphones-eng', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://img.ibxk.com.br/2019/12/16/16144954939212.jpg?w=1120&h=420&mode=crop&scale=both')
+  ctx.reply(`Finally, you decided to see new cellphones, right? 😄. Which one do you prefer the most?
+
+1️⃣ Samsung: 
+2️⃣ iPhone: `, {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Main Menu", callback_data: "go-main-eng"}],
       ]
     }
   })
