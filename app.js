@@ -7,16 +7,19 @@ bot.start((ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `😄 Seja bem vindo a o bot do Carrefour 🔵⚪️🔴\n 
 🇪🇸 Para español, presione el botón 'español' debajo
 🇬🇧 For english, press the 'english' button bellow\n 
-Caso contrário, Digite as opções de eletrodomésticos que vocé quer comprar: \n 
+Caso contrário, aperte nas opções de eletrodomésticos que vocé quer comprar: \n 
 1️⃣: TV 📺
 2️⃣: Celular 📱 \n
 Em caso de precisar de ajuda, digite /help`, 
   {
     reply_markup: {
       inline_keyboard: [
-        [{text: "Español", callback_data: "esp-menu"},
-          {text: "English", callback_data: "eng-menu"}
+        [ {text: "TV", callback_data: "tv-br"},
+          {text: "Celular", callback_data: "cel-br"}
         ],
+        [ {text: "Español", callback_data: "esp-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ]
       ]
     }
   })
@@ -24,39 +27,66 @@ Em caso de precisar de ajuda, digite /help`,
 
 bot.help((ctx) => {
   ctx.reply(`Enquanto fazemos crescer esse maravilhoso bot, deixamos as nossas principais opções 😊\n 
-✔️Digite 'TV' para ver as nossas opções de TV 📺 
-✔️Digite 'celular' para ver as opções de celulares que ofercemos 📱 \n
-Para voltar para o menú principal, digite /start `)
+✔️Aperte em 'TV' para ver as nossas opções de TV 📺 
+✔️Aperte em 'celular' para ver as opções de celulares que ofercemos 📱 \n
+✔️Aperte em 'Español' para ver o menú em español
+✔️Aperte em 'English' para ver o menú em inglés  
+Para voltar para o menú principal, digite /start na linha de mensagería
+
+🇪🇸Español:
+Mientras hacemos crecer este maravilloso bot, dejamos nuestras principales opciones 😊\n 
+✔️Presione en 'TV' para ver nuestras opciones de TV 📺 
+✔️Presione en 'celular' para ver las opciones de celulares que ofrecemos 📱 \n
+✔️Presione en 'Portugués' para ver el menú en portugués
+✔️Presione en 'English' para ver el menú en inglés 
+Para volver al menú principal, escriba /start en la línea de mensajería
+
+🇬🇧English:
+While we try to grow up this amazing bot, we are leaving you our main options 😊\n 
+✔️Press on 'TV' to see our TV options 📺 
+✔️Press on 'Cellphones' to see the cellphones options we offer 📱 \n
+✔️Press on 'Portugués' to see the menú in portuguese
+✔️Press on 'Español' to see the menú in spanish
+To get back to the main menú, type /start on the command line`)
 })
 
-bot.hears(['TV', 'Tv', 'tv'], (ctx) => {
-  ctx.telegram.sendMessage(ctx.chat.id, `Nada melhor para ficar em casa que uma TV nova, ne? ☺️
+
+bot.action('tv-br', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Nada melhor para ficar em casa que uma TV nova, ne? ☺️
 Qual TV você quer? 
-1️⃣ Samsung: /samsungtv 
-2️⃣ LG: /lgtv `, {
+1️⃣ Samsung: 
+2️⃣ LG: `, 
+  {
     reply_markup: {
       inline_keyboard: [
-        [{text: "Menú principal", callback_data: "go-main"}],
+        [{text: "Samsung", callback_data: "samsungtv"},
+          {text: "LG", callback_data: "lgtv"}
+        ],
+        [{text: "Menú Principal", callback_data: "go-main"},]
       ]
     }
   })
 })
 
-bot.hears(['Celular', 'CELULAR', 'celular'], (ctx) => {
-  ctx.telegram.sendMessage(ctx.chat.id, `Já é hora de trocar de aparelho, ne? 😄. Qual celular você quer?
+bot.action('cel-br', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄Já é hora de trocar de aparelho, ne? 😄. Qual celular você quer?
 
-1️⃣ Samsung: /samsungphones 
-2️⃣ iPhone: /iphones `, {
+1️⃣ Samsung:  
+2️⃣ iPhone: `, 
+  {
     reply_markup: {
       inline_keyboard: [
-        [{text: "Menú principal", callback_data: "go-main"}],
+        [{text: "Samsung", callback_data: "samsungphones"},
+          {text: "iPhone", callback_data: "iphones"}
+        ],
+        [{text: "Menú Principal", callback_data: "go-main"},]
       ]
     }
   })
 })
 
 // SMART TV SAMSUNG
-bot.command('samsungtv', (ctx) => {
+bot.action('samsungtv', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://i.pinimg.com/originals/5f/d0/30/5fd030534fd74380e0680ebeb79a213a.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de Smart TV Samsung, Qual você prefere? 😊', 
   {
@@ -162,7 +192,7 @@ Você pode ver mais detalhes para a compra ou voltar para o menú principal. Qua
 })
 
 // SMART TV LG
-bot.command('lgtv', (ctx) => {
+bot.action('lgtv', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://technolized.files.wordpress.com/2012/09/lg-smart-tv-logo.jpg?w=848')
   ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de Smart TV LG, Qual você prefere? 😊', 
   {
@@ -282,6 +312,7 @@ bot.action('back-lgtv', (ctx) => {
         [{text: "32 polegadas", callback_data: "LGSTV32"},
           {text: "60 polegadas", callback_data: "LGSTV60"}
         ],
+        [{text: "Voltar para TV's", callback_data: "back-tvs"}],
         [{text: "Menú principal", callback_data: "go-main"}]
       ]
     }
@@ -309,23 +340,39 @@ bot.action('go-back', (ctx) => {
 bot.action('go-main', (ctx) => {
   ctx.deleteMessage();
   ctx.telegram.sendMessage(ctx.chat.id, `😄 Seja bem vindo a o bot do Carrefour 🔵⚪️🔴\n 
-🇪🇸 Para español, escriba 'español'
-🇬🇧 For english, type: 'english'\n 
+🇪🇸 Para español, presione el botón 'español' debajo
+🇬🇧 For english, press the 'english' button bellow\n 
 Caso contrário, Digite as opções de eletrodomésticos que vocé quer comprar: \n 
 1️⃣: TV 📺
 2️⃣: Celular 📱 \n
-Em caso de precisar de ajuda, digite /help`)
+Em caso de precisar de ajuda, digite /help`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "TV", callback_data: "tv-br"},
+          {text: "Celular", callback_data: "cel-br"}
+        ],
+        [ {text: "Español", callback_data: "esp-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ]
+      ]
+    }
+  })
 })
 
 bot.action('back-tvs', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendMessage(ctx.chat.id, `Nada melhor para ficar em casa que uma TV nova, ne? ☺️
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Nada melhor para ficar em casa que uma TV nova, ne? ☺️
 Qual TV você quer? 
-1️⃣ Samsung: /samsungtv 
-2️⃣ LG: /lgtv `, {
+1️⃣ Samsung: 
+2️⃣ LG: `, 
+  {
     reply_markup: {
       inline_keyboard: [
-        [{text: "Menú principal", callback_data: "go-main"}],
+        [{text: "Samsung", callback_data: "samsungtv"},
+          {text: "LG", callback_data: "lgtv"}
+        ],
+        [{text: "Menú Principal", callback_data: "go-main"},]
       ]
     }
   })
@@ -335,7 +382,7 @@ Qual TV você quer?
 // Celulares
 
 // CELULARES SAMSUNG
-bot.command('samsungphones', (ctx) => {
+bot.action('samsungphones', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de aparelhos Samsung, Qual você prefere? 😊', 
   {
@@ -463,7 +510,7 @@ bot.action('back-cell-samsung', (ctx) => {
 
 // CELULARES IPHONES
 
-bot.command('iphones', (ctx) => {
+bot.action('iphones', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://m.economictimes.com/thumb/msid-73717611,width-1200,height-900,resizemode-4,imgsize-428397/apple-postpones-launch-of-online-store-in-india.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de iPhones, Qual você prefere? 😊', 
   {
@@ -592,14 +639,17 @@ bot.action('back-iphones', (ctx) => {
 
 bot.action('back-cellphones', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendPhoto(ctx.chat.id, 'https://img.ibxk.com.br/2019/12/16/16144954939212.jpg?w=1120&h=420&mode=crop&scale=both')
-  ctx.reply(`Já é hora de trocar de aparelho, ne? 😄. Qual celular você quer?
+  ctx.telegram.sendMessage(ctx.chat.id, `😄Já é hora de trocar de aparelho, ne? 😄. Qual celular você quer?
 
-1️⃣ Samsung: /samsungphones 
-2️⃣ iPhone: /iphones `, {
+1️⃣ Samsung:  
+2️⃣ iPhone: `, 
+  {
     reply_markup: {
       inline_keyboard: [
-        [{text: "Menú principal", callback_data: "go-main"}],
+        [{text: "Samsung", callback_data: "samsungphones"},
+          {text: "iPhone", callback_data: "iphones"}
+        ],
+        [{text: "Menú Principal", callback_data: "go-main"},]
       ]
     }
   })
@@ -609,17 +659,19 @@ bot.action('br-menu', (ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `😄 Seja bem vindo a o bot do Carrefour 🔵⚪️🔴\n 
 🇪🇸 Para español, presione el botón 'español' debajo
 🇬🇧 For english, press the 'english' button bellow\n 
-Caso contrário, digite as opções de eletrodomésticos que vocé quer comprar: \n 
+Caso contrário, aperte as opções de eletrodomésticos que vocé quer comprar: \n 
 1️⃣: TV 📺
 2️⃣: Celular 📱 \n
 Em caso de precisar de ajuda, digite /help`, 
   {
     reply_markup: {
       inline_keyboard: [
+        [ {text: "TV", callback_data: "tv-br"},
+          {text: "Celular", callback_data: "cel-br"}
+        ],
         [ {text: "Español", callback_data: "esp-menu"},
           {text: "English", callback_data: "eng-menu"}
-        ],
-        [{text: "Menú principal", callback_data: "go-main"}]
+        ]
       ]
     }
   })
@@ -985,7 +1037,7 @@ bot.action('cel-esp', (ctx) => {
 })
 
 // -------------------   CELULARES SAMSUNG  ------------------ //
-bot.command('samsungphones-esp', (ctx) => {
+bot.action('samsungphones-esp', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Tenemos disponibles 2 modelos de dispositivos Samsung, ¿Cuál prefieres? 😊', 
   {
@@ -1113,7 +1165,7 @@ bot.action('back-cell-samsung-esp', (ctx) => {
 
 // ---------------------- ESPAÑOL CELULARES IPHONE ------------------------- //
 
-bot.command('iphones-esp', (ctx) => {
+bot.action('iphones-esp', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://m.economictimes.com/thumb/msid-73717611,width-1200,height-900,resizemode-4,imgsize-428397/apple-postpones-launch-of-online-store-in-india.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Tenemos disponibles 2 modelos de iPhones, ¿Cuál prefieres? 😊', 
   {
@@ -1249,6 +1301,9 @@ bot.action('back-cellphones-esp', (ctx) => {
 2️⃣ iPhone: `, {
     reply_markup: {
       inline_keyboard: [
+        [{text: "Samsung", callback_data: "samsungphones-esp"},
+          {text: "iPhone", callback_data: "iphones-esp"}
+        ],
         [{text: "Menú principal", callback_data: "go-main-esp"}],
       ]
     }
@@ -1258,7 +1313,7 @@ bot.action('back-cellphones-esp', (ctx) => {
 // ------------------------------------------------ ENGLISH MENU --------------------------
 bot.action('eng-menu', (ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `😄 Hi! Wellcome to Carrefour in english 🔵⚪️🔴\n 
-🇧🇷 Para portugués, aperte o botão abaixo
+🇧🇷 Para portugués, aperte o botão 'portugués' abaixo
 🇪🇸 Para español, presione el botón 'español' debajo\n 
 Otherwise, please select the electronics you wish to buy: \n 
 1️⃣: TV 📺
@@ -1302,7 +1357,7 @@ Which one do you prefer the most?👀
 // ENGLISH SMART TV SAMSUNG
 bot.action('samsungtv-eng', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://i.pinimg.com/originals/5f/d0/30/5fd030534fd74380e0680ebeb79a213a.jpg')
-  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Samsung Smart TV models avaiable, Which one do you prefer the most? 😊', 
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Samsung Smart TV models available, Which one do you prefer the most? 😊', 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1394,7 +1449,7 @@ bot.action('stv55-set-eng', (ctx) => {
 ✅Plugs: 2USB and HDMI
 ✅Wifi \n
 
-You can see more details for buying or get back to Main Menu. Which one do you prefer? 👀`, 
+You can see more details for buying or get back to Main Menu. What do you prefer? 👀`, 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1411,7 +1466,7 @@ You can see more details for buying or get back to Main Menu. Which one do you p
 
 bot.action('lgtv-eng', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://technolized.files.wordpress.com/2012/09/lg-smart-tv-logo.jpg?w=848')
-  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 LG Smart TV models avaiable. Which one do you prefer the most? 😊', 
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 LG Smart TV models available. Which one do you prefer the most? 😊', 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1522,7 +1577,7 @@ You can see more buying details or get back to Main Menu. What do you prefer? �
 
 bot.action('back-lgtv-eng', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Smart TV LG options avaiable. Which one do you prefer the most? 😊', 
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Smart TV LG options available. Which one do you prefer the most? 😊', 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1540,7 +1595,7 @@ bot.action('back-lgtv-eng', (ctx) => {
 
 bot.action('go-back-eng', (ctx) => {
   ctx.deleteMessage();
-  ctx.telegram.sendMessage(ctx.chat.id, `We have 2 Samsung Smart TV options avaiable. Which one do you prefer the most? 😊`, 
+  ctx.telegram.sendMessage(ctx.chat.id, `We have 2 Samsung Smart TV options available. Which one do you prefer the most? 😊`, 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1566,10 +1621,10 @@ For help, please type /help 👀`,
     reply_markup: {
       inline_keyboard: [
         [{text: "TV", callback_data: "tv-eng"},
-          {text: "Celular", callback_data: "cel-eng"}
+          {text: "Cellphone", callback_data: "cel-eng"}
         ],
         [ {text: "Portugués", callback_data: "br-menu"},
-          {text: "English", callback_data: "eng-menu"}
+          {text: "Español", callback_data: "esp-menu"}
         ]
       ]
     }
@@ -1597,7 +1652,7 @@ Which one do you prefer the most?👀
 
 // --------------------- CELLPHONES IN English  ---------------  // 
 bot.action('cel-eng', (ctx) => {
-  ctx.telegram.sendMessage(ctx.chat.id, `😄 Finally you decided to look at new cellphones, right? 😏. Which cellphone do you like the most?
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Finally, you decided to look at new cellphones, right? 😏. Which cellphone do you like the most?
 
 1️⃣ Samsung: 
 2️⃣ iPhone: `, 
@@ -1613,21 +1668,24 @@ bot.action('cel-eng', (ctx) => {
   })
 })
 
-// -------------------   CELULARES SAMSUNG  ------------------ //
-bot.command('samsungphones-eng', (ctx) => {
+// -------------------   SAMSUNG  CELLPHONES ------------------ //
+
+bot.action('samsungphones-eng', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
-  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Samsung cellphone models avaiable. Which one do you prefer the most? 😊', 
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have 2 Samsung cellphone models available. Which one do you prefer the most? 😊', 
   {
     reply_markup: {
       inline_keyboard: [
         [{text: "Galaxy S10", callback_data: "GLXS10-eng"},
           {text: "Galaxy A71", callback_data: "GLXA71-eng"}
         ],
-        [{text: "Back to cellphones", callback_data: "back-cellphones-eng"}]
+        [{text: "Back to cellphones", callback_data: "back-cellphones-eng"}],
+        [{text: "Main Menu", callback_data: "go-main-eng"}]
       ]
     }
   })
 })
+
 
 bot.action('GLXS10-eng', (ctx) => {
   ctx.deleteMessage();
@@ -1682,7 +1740,7 @@ bot.action('GLXA71-eng', (ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `You selected Samsung Galaxy A71😍 excelent choose 😎. Now you have three options:\n 
 ✅Features: to see phone details
 ✅Buy
-✅Back tol Main Menu 👀`,
+✅Back to Main Menu 👀`,
   {
     reply_markup: {
       inline_keyboard: [
@@ -1727,7 +1785,7 @@ You can see more buying details or get back to Main Menu. What do you prefer? �
 bot.action('back-cell-samsung-eng', (ctx) => {
   ctx.deleteMessage();
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
-  ctx.telegram.sendMessage(ctx.chat.id, 'We have Samsung 2 models avaiable. Which one do you prefer? 😊', 
+  ctx.telegram.sendMessage(ctx.chat.id, 'We have Samsung 2 models available. Which one do you prefer? 😊', 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1742,9 +1800,9 @@ bot.action('back-cell-samsung-eng', (ctx) => {
 
 // ---------------------- english CELULARES IPHONE ------------------------- //
 
-bot.command('iphones-eng', (ctx) => {
+bot.action('iphones-eng', (ctx) => {
   ctx.telegram.sendPhoto(ctx.chat.id, 'https://m.economictimes.com/thumb/msid-73717611,width-1200,height-900,resizemode-4,imgsize-428397/apple-postpones-launch-of-online-store-in-india.jpg')
-  ctx.telegram.sendMessage(ctx.chat.id, 'Now, we have 2 iPhone models avaiable. Which one do you prefer the most? 😊', 
+  ctx.telegram.sendMessage(ctx.chat.id, 'Now, we have 2 iPhone models available. Which one do you prefer the most? 😊', 
   {
     reply_markup: {
       inline_keyboard: [
@@ -1763,7 +1821,7 @@ bot.action('iphone11-eng', (ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `You selected the iPhone 11 Pro Max😍 the best from Apple 😎. Now, you have 3 options:\n 
 ✅Features: to see more phone details
 ✅Buy
-✅Back tol Main Menu 👀`,
+✅Back to Main Menu 👀`,
   {
     reply_markup: {
       inline_keyboard: [
@@ -1811,7 +1869,7 @@ bot.action('iphoneXS-eng', (ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `You selected the iPhone XS Max😍 Excelent choose 😎. Now you have 3 options:\n 
 ✅Features: to see more phone details
 ✅Buy
-✅Back tol Main Menu 👀`,
+✅Back to Main Menu 👀`,
   {
     reply_markup: {
       inline_keyboard: [
@@ -1878,7 +1936,10 @@ bot.action('back-cellphones-eng', (ctx) => {
 2️⃣ iPhone: `, {
     reply_markup: {
       inline_keyboard: [
-        [{text: "Main Menu", callback_data: "go-main-eng"}],
+        [{text: "Samsung", callback_data: "samsungphones-eng"},
+          {text: "iPhone", callback_data: "iphones-eng"}
+        ],
+        [{text: "Main Menu", callback_data: "go-main-eng"},]
       ]
     }
   })
