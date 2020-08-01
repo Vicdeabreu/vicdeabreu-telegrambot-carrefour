@@ -5,12 +5,21 @@ const bot = new Telegraf('1071648884:AAFkOH_jAJBqa9TZlwnJc7SacbDkZPl4V3E');
 // Bot em portugués
 bot.start((ctx) => {
   ctx.telegram.sendMessage(ctx.chat.id, `😄 Seja bem vindo a o bot do Carrefour 🔵⚪️🔴\n 
-🇪🇸 Para español, escriba 'español'
-🇬🇧 For english, type: 'english'\n 
+🇪🇸 Para español, presione el botón 'español' debajo
+🇬🇧 For english, press the 'english' button bellow\n 
 Caso contrário, Digite as opções de eletrónicos que vocé quer comprar: \n 
 1️⃣: TV 📺
 2️⃣: Celular 📱 \n
-Em caso de precisar de ajuda, digite /help`)
+Em caso de precisar de ajuda, digite /help`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Español", callback_data: "esp-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ],
+      ]
+    }
+  })
 })
 
 bot.help((ctx) => {
@@ -36,6 +45,7 @@ bot.hears(['Celular', 'CELULAR', 'celular'], (ctx) => {
 
 // SMART TV SAMSUNG
 bot.command('samsungtv', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://i.pinimg.com/originals/5f/d0/30/5fd030534fd74380e0680ebeb79a213a.jpg')
   ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de Smart TV Samsung, Qual você prefere? 😊', 
   {
     reply_markup: {
@@ -79,7 +89,7 @@ bot.action('stv43-set', (ctx) => {
 ✅Entrada USB e HDMI
 ✅Wifi \n
 
-Você quer mais detalhes para a compra ou voltar para o menú principal. Qual prefere? 👀`, 
+Você pode ver mais detalhes para a compra ou voltar para o menú principal. Qual prefere? 👀`, 
   {
     reply_markup: {
       inline_keyboard: [
@@ -167,6 +177,7 @@ Em caso de precisar de ajuda, digite /help`)
 
 // SMART TV LG
 bot.command('lgtv', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://technolized.files.wordpress.com/2012/09/lg-smart-tv-logo.jpg?w=848')
   ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de Smart TV LG, Qual você prefere? 😊', 
   {
     reply_markup: {
@@ -214,7 +225,7 @@ bot.action('lgtv32-set', (ctx) => {
 ✅Entrada USB e HDMI
 ✅Wifi \n
 
-Você quer mais detalhes da compra ou voltar para o menú principal? 👀`, 
+Você pode ver mais detalhes da compra ou voltar para o menú principal. Qual prefere? 👀`, 
   {
     reply_markup: {
       inline_keyboard: [
@@ -260,7 +271,7 @@ bot.action('lgtv60-set', (ctx) => {
 ✅Entrada USB e HDMI
 ✅Wifi \n
 
-Você quer mais detalhes da compra ou voltar para o menú principal? 👀`, 
+Você pode ver mais detalhes da compra ou voltar para o menú principal. Qual prefere? 👀`, 
   {
     reply_markup: {
       inline_keyboard: [
@@ -295,8 +306,49 @@ bot.hears(['Celular', 'celular', 'CELULAR'], (ctx) => {
 })
 
 
+// Menú en Español
 
-// Carrefour en español
+bot.action('esp-menu', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Bienvenido al bot de Carrefour en español 🔵⚪️🔴\n 
+🇧🇷 Para portugués, aperte o botão abaixo
+🇬🇧 For english, press the button bellow\n 
+En caso contrario, Seleccione los electrodomésticos que desea comprar: \n 
+1️⃣: TV 📺
+2️⃣: Celular 📱 \n
+Para pedir ayuda, escriba /help 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "TV", callback_data: "tv-esp"},
+          {text: "Celular", callback_data: "cel-esp"}
+        ],
+        [ {text: "Portugués", callback_data: "br-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ]
+      ]
+    }
+  })
+})
+
+bot.action('br-menu', (ctx) => {
+  ctx.telegram.sendMessage(ctx.chat.id, `😄 Seja bem vindo a o bot do Carrefour 🔵⚪️🔴\n 
+🇪🇸 Para español, presione el botón 'español' debajo
+🇬🇧 For english, press the 'english' button bellow\n 
+Caso contrário, digite as opções de eletrónicos que vocé quer comprar: \n 
+1️⃣: TV 📺
+2️⃣: Celular 📱 \n
+Em caso de precisar de ajuda, digite /help`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Español", callback_data: "esp-menu"},
+          {text: "English", callback_data: "eng-menu"}
+        ],
+      ]
+    }
+  })
+})
+
 
 
 bot.launch();
