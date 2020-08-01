@@ -300,12 +300,6 @@ bot.action('back-lgtv', (ctx) => {
   })
 })
 
-// CELULARES
-bot.hears(['Celular', 'celular', 'CELULAR'], (ctx) => {
-  ctx.reply('!!')
-})
-
-
 // Menú en Español
 
 bot.action('esp-menu', (ctx) => {
@@ -349,6 +343,131 @@ Em caso de precisar de ajuda, digite /help`,
   })
 })
 
+// Celulares
+
+bot.command('samsungphones', (ctx) => {
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de aparelhos Samsung, Qual você prefere? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Galaxy S10", callback_data: "GLXS10"},
+          {text: "Galaxy A71", callback_data: "GLXA71"}
+        ],
+      ]
+    }
+  })
+})
+
+bot.action('GLXS10', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h6c/h35/h00/h00/13689345343518.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `Você escolheou o Samsung Galaxy S10😍 o aparelho mais top da Samsung 😎. Agora você tem 3 opções:\n 
+✅Características: para ver os detalhes do aparelho 
+✅Comprar
+✅Voltar para o menú principal 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Características", callback_data: "glxs10-set"},
+          {text: "Comprar", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-S10-128GB-8GB-Octa-2-7GHz-1-9GHz-Android-9-0-PowerShare-6-1-12MP-12MP-16MP-10MP-Azul/p/MP15888516"},
+          {text: "Voltar", callback_data: "back-cellphones"}
+        ],
+        [{text: "Menú principal", callback_data: "go-main"}]
+      ]
+    }
+  })
+})
+
+bot.action('glxs10-set', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `O Samsung Galaxy S10 têm nessas características:\n 
+✅Tela: 6.1 polegadas
+✅Resolução: UHD 8K (7680px x 4320px)
+✅Armazenamento: 128GB
+✅Memoria RAM: 8GB
+✅Procesador: Exynos Octa Core 2.7GHz + 1.9GHz
+✅Android:9
+✅Camera:Tripla (12MP,12MP,16MP,10MP)
+✅Cores:Azul, Branco e Preto
+✅Bateria: 3400mAh
+✅Bluetooth
+
+Você pode ver mais detalhes para a compra ou voltar para o menú principal. Qual prefere? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Comprar", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-S10-128GB-8GB-Octa-2-7GHz-1-9GHz-Android-9-0-PowerShare-6-1-12MP-12MP-16MP-10MP-Azul/p/MP15888516"},
+          {text: "Voltar", callback_data: "back-cellphones"}
+        ],
+        [{text: "Menú principal", callback_data: "go-main"}]
+      ]
+    }
+  })
+})
+
+bot.action('GLXA71', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://static.carrefour.com.br/medias/sys_master/images/images/h8f/h26/h00/h00/17100837552158.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, `Você escolheou o Samsung Galaxy A71😍 uma excelente escolha 😎. Agora você tem 3 opções:\n 
+✅Características: para ver os detalhes do aparelho 
+✅Comprar
+✅Voltar para o menú principal 👀`,
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Características", callback_data: "glxa71-set"},
+          {text: "Comprar", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-A71-128GB-Prata-4G-Tela-6-7-Pol-Camera-Quadrupla-64MP-Selfie-32MP-Android-10-0/p/5916330"},
+          {text: "Voltar", callback_data: "back-cellphones"}
+        ],
+        [{text: "Menú principal", callback_data: "go-main"}]
+      ]
+    }
+  })
+})
+
+bot.action('glxa71-set', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendMessage(ctx.chat.id, `O Samsung Galaxy A71 têm nessas características:\n 
+✅Tela: 6.7 polegadas
+✅Resolução: UHD 4K (1080px x 2400px)
+✅Armazenamento: 128GB (Expandível até 512GB)
+✅Memoria RAM: 6GB
+✅Procesador: Exynos Octa Core 2.2GHz
+✅Android:10
+✅Camera:Quadrupla (64MP,12MP,5MP,5MP) Frontal: 32MP
+✅Cores:Prata, Preto
+✅Bateria: 4500mAh
+✅Bluetooth
+✅Garantía: 12 meses
+
+Você pode ver mais detalhes para a compra ou voltar para o menú principal. Qual prefere? 👀`, 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [ {text: "Comprar", url: "https://www.carrefour.com.br/Smartphone-Samsung-Galaxy-A71-128GB-Prata-4G-Tela-6-7-Pol-Camera-Quadrupla-64MP-Selfie-32MP-Android-10-0/p/5916330"},
+          {text: "Voltar", callback_data: "back-cellphones"}
+        ],
+        [{text: "Menú principal", callback_data: "go-main"}]
+      ]
+    }
+  })
+})
+
+bot.action('back-cellphones', (ctx) => {
+  ctx.deleteMessage();
+  ctx.telegram.sendPhoto(ctx.chat.id, 'https://logo-logos.com/wp-content/uploads/2017/10/Samsung-Mobile.jpg')
+  ctx.telegram.sendMessage(ctx.chat.id, 'Temos disponíveis 2 modelos de aparelhos Samsung, Qual você prefere? 😊', 
+  {
+    reply_markup: {
+      inline_keyboard: [
+        [{text: "Galaxy S10", callback_data: "GLXS10"},
+          {text: "Galaxy A71", callback_data: "GLXA71"}
+        ],
+      ]
+    }
+  })
+})
 
 
 bot.launch();
